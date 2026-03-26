@@ -1,6 +1,9 @@
+import dash
 from dash import html, dcc, dash_table, callback, Input, Output
 import dash_bootstrap_components as dbc
 import pandas as pd
+
+dash.register_page(__name__, path="/page2", name="Affichage des données")
 
 # Lecture des données
 df = pd.read_csv("datas/avocado.csv")

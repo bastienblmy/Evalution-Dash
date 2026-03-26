@@ -1,5 +1,8 @@
+import dash
 from dash import html, dcc
 import dash_bootstrap_components as dbc
+
+dash.register_page(__name__, path="/page3", name="Aide en ligne")
 
 # Lecture des fichiers markdown
 with open("datas/expli1.md", "r", encoding="utf-8") as f:

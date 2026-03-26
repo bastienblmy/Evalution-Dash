@@ -1,7 +1,10 @@
+import dash
 from dash import html, dcc, callback, Input, Output
 import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
+
+dash.register_page(__name__, path="/", name="Comparaison entre région")
 
 # Lecture du fichier CSV
 df = pd.read_csv("datas/avocado.csv")
