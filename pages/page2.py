@@ -1,4 +1,4 @@
-from dash import html, dcc, dash_table
+from dash import html, dcc, dash_table, callback, Input, Output
 import dash_bootstrap_components as dbc
 import pandas as pd
 
@@ -120,3 +120,20 @@ layout = dbc.Container(
     fluid=True,
     className="mt-4"
 )
+
+@callback(
+    Output("page2-table", "data"),
+    Output("page2-badge", "children"),
+    Input("page2-region-dropdown", "value"),
+    Input("page2-type-radio", "value")
+)
+def update_table(selected_region, selected_type):
+    df_filtered = df[df["region"] == selected_region].copy()
+
+    if selected_type != "Tous":
+        df_filtered = df_filtered[df_filtered["type"] == selected_type]
+
+    return (
+        df_filtered[visible_columns].to_dict("records"),
+        f"Lignes: {len(df_filtered)}"
+    )
