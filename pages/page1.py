@@ -103,6 +103,8 @@ layout = dbc.Container(
     className="mt-4"
 )
 
+# Met à jour le graphique de droite selon la région choisie
+
 @callback(
     Output("graph-right", "figure"),
     Input("region-select", "value")

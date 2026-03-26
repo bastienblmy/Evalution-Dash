@@ -1,6 +1,8 @@
 from dash import Dash, html, dcc, page_container
 import dash_bootstrap_components as dbc
 
+# Initialisation de l'application multipages
+
 app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 navbar = dbc.Navbar(

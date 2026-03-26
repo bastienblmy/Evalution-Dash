@@ -124,6 +124,8 @@ layout = dbc.Container(
     className="mt-4"
 )
 
+# Filtre le tableau selon la région et le type d’avocat sélectionnés
+
 @callback(
     Output("page2-table", "data"),
     Output("page2-badge", "children"),
