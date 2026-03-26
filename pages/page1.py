@@ -1,4 +1,4 @@
-from dash import html, dcc
+from dash import html, dcc, callback, Input, Output
 import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
@@ -99,3 +99,24 @@ layout = dbc.Container(
     fluid=True,
     className="mt-4"
 )
+
+@callback(
+    Output("graph-right", "figure"),
+    Input("region-select", "value")
+)
+def update_graph_right(selected_region):
+    df_filtered = (
+        df[df["region"] == selected_region]
+        .groupby("Date", as_index=False)["Total Volume"]
+        .sum()
+        .sort_values("Date")
+    )
+
+    fig = px.line(
+        df_filtered,
+        x="Date",
+        y="Total Volume",
+        title=f"Quantités vendues - {selected_region}"
+    )
+
+    return fig
